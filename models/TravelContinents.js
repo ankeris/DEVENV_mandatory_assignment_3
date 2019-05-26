@@ -13,6 +13,6 @@ TravelContinents.add({
 	name: { type: String, required: true },
 });
 
-TravelContinents.relationship({ ref: 'Post', path: 'posts', refPath: 'categories' });
+TravelContinents.relationship({ ref: 'Travel', path: 'travels', refPath: 'continents' });
 
 TravelContinents.register();

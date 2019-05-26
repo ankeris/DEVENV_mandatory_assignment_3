@@ -2,15 +2,23 @@
 
 {% block intro %}
 <div class="container">
-	{% set title = ( data.travel.name if data.travel else "Blog" ) %}
-	<h1>{{ title }}</h1>
-</div>
-{% endblock %}
-
-{% block content %}
-<div class="container">
-	<div class="row block__element--red">
-		
+	<div class="row">
+		<div class="col-sm-8 col-md-9">
+			{% for travel in data.travels %}
+				<h2>{{travel.title}}</h2>
+				<p><strong>Continent:</strong> {{travel.continents.name}}</p>
+			{% endfor %}
+		</div>
+		<div class="col-sm-4 col-md-3">
+			<h2>Destinations</h2>
+			<div style="margin-top: 70px;" class="list-group">
+				<a href="/travels" class="active list-group-item">All Destinations</a>
+				{% for destination in data.destinations %}
+					<a href="/travels/{{destination.key}}" class="false list-group-item">{{destination.name}}</a>
+				{% endfor %}
+			</div>
+		</div>
 	</div>
 </div>
+	
 {% endblock %}
