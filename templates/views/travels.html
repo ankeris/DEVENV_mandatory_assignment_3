@@ -2,15 +2,19 @@
 
 {% block intro %}
 <div class="container">
-	{% set title = ( data.travel.name if data.travel else "Blog" ) %}
-	<h1>{{ title }}</h1>
+	<h1>{{section}}</h1>
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="container">
 	<div class="row block__element--red">
-		
+		<ul>
+		{% for travel in travelsArr %}
+			<li>{{travel.title}}</li>
+			<img class="" src="{{travel.image.secure_url}}" alt="">
+		{% endfor %}
+		</ul>
 	</div>
 </div>
 {% endblock %}

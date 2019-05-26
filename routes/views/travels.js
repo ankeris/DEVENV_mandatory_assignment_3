@@ -7,23 +7,20 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Init locals
-	locals.section = 'Travels';
+	locals.section = 'Our freshly cooked travel';
 
 	locals.filters = {
 		destination: req.params.category,
 	};
 
-	locals.data = {
-		travels: [],
-		destinations: [],
-	};
+	locals.travelsArr = [];
+	locals.destinations = [];
 
 	// Load all categories
 	view.on('init', function (next) {
 		keystone.list('Travel').model.find().sort('name').exec(function (err, results) {
-			console.log(results);
-			locals.data.travels = results;
-			next()
+			locals.travelsArr = results;
+			next();
 		});
 	});
 
