@@ -16,6 +16,7 @@ Enquiry.add({
 	email: { type: Types.Email, required: true },
 	phone: { type: String },
 	enquiryType: { type: Types.Select, options: [
+		{ value: 'travel', label: 'Ask about a travel'},
 		{ value: 'message', label: 'Just leaving a message' },
 		{ value: 'question', label: 'I\'ve got a question' },
 		{ value: 'other', label: 'Something else...' },

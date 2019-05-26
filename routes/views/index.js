@@ -8,6 +8,14 @@ exports = module.exports = function (req, res) {
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
 	locals.section = 'home';
+	locals.travels = [];
+
+	view.on('init', function (next) {
+        keystone.list('Travel').model.find().sort('name').limit(3).exec(function (err, results) {
+            locals.travels = results;
+            next();
+        });
+    });
 
 	// Render the view
 	view.render('index');

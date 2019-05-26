@@ -4,31 +4,22 @@
 	<div class="container">
 		<div class="jumbotron">
 			<img src="/images/logo.svg" width="160">
-			<h1>Welcome</h1>
-			<p>This is your new <a href="http://keystonejs.com" target="_blank">KeystoneJS</a> website.</p>
-			<p>
-				It includes the latest versions of
-				<a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
-				and <a href="http://www.jquery.com/" target="_blank">jQuery</a>.
-			</p>
-			<p>Visit the <a href="http://keystonejs.com/guide" target="_blank">Getting Started</a> guide to learn how to customise it.</p>
-			<hr>
-			{% if user and user.canAccessKeystone %}
-				<p>
-					<a href="/keystone" class="btn btn-lg btn-primary">Open the Admin UI</a>
-				</p>
-			{% else %}
-				<p>We have created a default Admin user for you with the email <strong>paradise@test.com</strong> and the password <strong>password</strong>.</p>
-				<p>
-					<a href="/keystone/signin" style="margin-right: 10px" class="btn btn-lg btn-primary">Sign in</a>
-					to use the Admin UI.
-				</p>
-			{% endif %}
-			<hr>
-			<p>
-				Remember to <a href="https://github.com/keystonejs/keystone" target="_blank">Star KeystoneJS on GitHub</a> and
-				<a href="https://twitter.com/keystonejs" target="_blank">follow @keystonejs</a> on twitter for updates.
-			</p>
+			<h1>Welcome to Paradise Travel</h1>
+			<h3>A place where dreams come true</h3>
+		</div>
+		<div class="row">
+			<header class="container">
+				<h3>Explore some of our travels here:</h3>
+			</header>
+			{% for obj in travels %}
+				<div class="col-md-4 col-lg-4">
+					<a href="/travels/destination/{{obj.slug}}"><h4>{{obj.title}}</h4></a>
+					<p>{{obj.content.brief | safe}}</p>
+					{% if obj.image %}
+						<img src="{{obj.image.secure_url}}" width="100px" height="100px" class="thumbnail">
+					{% endif %}
+				</div>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}

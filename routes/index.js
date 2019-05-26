@@ -36,7 +36,7 @@ exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/travels/:continent?', routes.views.travels);
-	app.get('/travels/destination/:travelId', routes.views.travel);
+	app.get('/travels/destination/:travelSlug', routes.views.travel);
 	app.get('/gallery', routes.views.gallery);
 	app.all('/contact', routes.views.contact);
 

@@ -2,6 +2,31 @@
 
 {% block content %}
 	<div class="container">
-		hello from travel page
+		<div class="row">
+			<div class="col-md-12 col-lg-12">
+				<article>
+					<p><a href="/travels">&larr; See all travels</a></p>
+					<hr>
+					<header>
+					<h1>{{data.travel.title}}</h1>  
+					</header>
+					<div class="row">
+						<div class="col-md-6 col-lg-6">
+							<div class="well">
+								{{data.travel.content.extended | safe}}
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-6">
+							{% if data.travel.image %}
+								<img src="{{data.travel.image.secure_url}}" class="img-responsive">
+							{% endif %}
+						</div>
+						<div class="col-md-12 col-lg-12">
+							<a href="/contact" class="btn btn-success btn-block">Ask about this travel</a>
+						</div>
+					</div>
+				</article>
+			</div>
+		</div>
 	</div>
 {% endblock %}
