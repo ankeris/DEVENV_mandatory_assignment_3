@@ -1,33 +1,5 @@
 {% extends "layouts/default.html" %}
 
-{% macro blogPost(post) %}
-<div class="post" data-ks-editable="editable(user, { list: " Post ", id: post.id })">
-	<h2>
-		<a href="/blog/post/{{ post.slug }}">{{ post.title }}</a>
-	</h2>
-	<p class="lead text-muted">Posted
-		{% if post.publishedDate %}
-			<br>on {{ post._.publishedDate.format("MMMM Do, YYYY") }}
-		{% endif %}
-		{% if post.categories and post.categories.length %}
-			<br>in {% for cat in post.categories %}<a href="/blog/{{ cat.key }}">{{ cat.name }}</a>{% if loop.index < post.categories.length %}, {% endif %}{% endfor %}
-		{% endif %}
-		{% if post.author %}
-			<br>by {{ post.author.name.first }}
-		{% endif %}
-	</p>
-	{% if post.image.exists %}
-		<img src="{{ post._.image.fit(160,160) }}" class="img pull-right">
-	{% endif %}
-	<p>{{ post.content.brief|safe }}</p>
-	{% if post.content.extended %}
-		<p class="read-more">
-			<a href="/blog/post/{{ post.slug }}">Read more...</a>
-		</p>
-	{% endif %}
-</div>
-{% endmacro %}
-
 {% block intro %}
 <div class="container">
 	{% set title = ( data.category.name if data.category else "Blog" ) %}
@@ -36,6 +8,7 @@
 {% endblock %}
 
 {% block content %}
+{{data.posts}}
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 col-md-9">

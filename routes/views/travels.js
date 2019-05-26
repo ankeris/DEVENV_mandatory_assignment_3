@@ -7,7 +7,7 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Init locals
-	locals.section = 'blog';
+	locals.section = 'events';
 	locals.filters = {
 		category: req.params.category,
 	};
@@ -20,10 +20,6 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 
 		keystone.list('PostCategory').model.find().sort('name').exec(function (err, results) {
-
-			if (err || !results.length) {
-				return next(err);
-			}
 
 			locals.data.categories = results;
 
@@ -79,5 +75,5 @@ exports = module.exports = function (req, res) {
 	});
 
 	// Render the view
-	view.render('blog');
+	view.render('travels');
 };

@@ -1,32 +1,31 @@
-var keystone = require('keystone');
-var Types = keystone.Field.Types;
+const keystone = require('keystone');
+const Types = keystone.Field.Types;
 
 /**
  * Post Model
  * ==========
  */
 
-var Post = new keystone.List('Post', {
+const Travel = new keystone.List('Travel', {
 	map: { name: 'title' },
 	autokey: { path: 'slug', from: 'title', unique: true },
 });
 
-Post.add({
+Travel.add({
 	title: { type: String, required: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
-	author: { type: Types.Relationship, ref: 'User', index: true },
 	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
 	image: { type: Types.CloudinaryImage },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
 		extended: { type: Types.Html, wysiwyg: true, height: 400 },
 	},
-	categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
+	continents: { type: Types.Relationship, ref: 'TravelContinents', many: false },
 });
 
-Post.schema.virtual('content.full').get(function () {
+Travel.schema.virtual('content.full').get(function () {
 	return this.content.extended || this.content.brief;
 });
 
-Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
-Post.register();
+Travel.defaultColumns = 'title, state, publishedDate';
+Travel.register();
