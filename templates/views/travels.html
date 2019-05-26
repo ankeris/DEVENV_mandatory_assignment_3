@@ -1,20 +1,31 @@
-{% extends "layouts/default.html" %}
-
-{% block intro %}
+{% extends "layouts/default.html" %} {% block intro %}
 <div class="container">
-	<h1>{{section}}</h1>
+	<h1>{{ section }}</h1>
 </div>
-{% endblock %}
+{% endblock %} {% block content %}
 
-{% block content %}
-<div class="container">
-	<div class="row block__element--red">
-		<ul>
-		{% for travel in travelsArr %}
-			<li>{{travel.title}}</li>
-			<img class="" src="{{travel.image.secure_url}}" alt="">
-		{% endfor %}
-		</ul>
+<div class="container continents">
+	<a href="#">africa</a>
+	<a href="#">america</a>
+	<a href="#">australia</a>
+	<a href="#">europe</a>
+	<a href="#">asia</a>
+</div>
+
+<div class="travel-grid">
+	{% for travel in travelsArr %}
+	<div class="travel-item half">
+		<div class="picture">
+			<img src="{{ travel.image.secure_url }}" />
+		</div>
+		<div class=" half">
+			<a href="#" class="description">
+				<h2>{{ travel.title }}</h2>
+				{{ travel.content.brief }}
+			</a>
+		</div>
 	</div>
+
+	{% endfor %}
 </div>
 {% endblock %}
