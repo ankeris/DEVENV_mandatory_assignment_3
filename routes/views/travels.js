@@ -22,7 +22,7 @@ exports = module.exports = function (req, res) {
 			if(err || !result.length){
 				return next(err);
 			}
-			locals.data.destinations = result;
+			locals.destinations = result;
 			next(err);
 		})
 	});
@@ -30,7 +30,7 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 		if(req.params.continent){
 			keystone.list('TravelContinents').model.findOne({ key: locals.filters.destination }).exec((err, result) => {
-				locals.data.destination = result;
+				locals.destination = result;
 				next(err);
 			});
 		}else{
@@ -42,12 +42,12 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 		var q = keystone.list('Travel').model.find().sort('name').populate('continents')
 		
-		if(locals.data.destination){
-			q.where('continents').in([locals.data.destination]);
+		if(locals.destination){
+			q.where('continents').in([locals.destination]);
 		}
 		
 		q.exec(function (err, results) {
-			locals.data.travels = results;
+			locals.travelsArr = results;
 			next();
 		});
 	});
