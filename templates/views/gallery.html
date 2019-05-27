@@ -2,12 +2,27 @@
 
 {% block intro %}
 	<div class="container">
-		<h1>Gallery</h1>
+		<h1>Images</h1>
 	</div>
 {% endblock %}
 
 {% block content %}
 	<div class="container">
+		<header>
+			<h2>Travel images</h2>
+		</header>
+		<div class="row">
+			{% for image in images %}
+				<div class="col-sm-4 col-md-4">
+					<img src="{{ image.secure_url }}" class="img-responsive">
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="container">
+		<header>
+			<h2>Galleries</h2>
+		</header>
 		{% if galleries.length %}
 			{% for gallery in galleries %}
 				<h2>{{ gallery.name }}
