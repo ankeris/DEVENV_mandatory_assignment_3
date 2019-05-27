@@ -7,16 +7,14 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Init locals
-	locals.section = 'Travels';
+	locals.section = 'Our freshly cooked travel';
 
 	locals.filters = {
 		destination: req.params.continent,
 	};
 
-	locals.data = {
-		travels: [],
-		destinations: [],
-	};
+	locals.travelsArr = [];
+	locals.destinations = [];
 
 	// Load destinations
 	view.on('init', function (next) {

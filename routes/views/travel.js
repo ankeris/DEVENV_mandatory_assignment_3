@@ -7,7 +7,7 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Init locals
-	locals.section = 'travel';
+	locals.section = 'Our fresh cooked travels';
 	locals.filters = {
 		category: req.params.category,
 		travelSlug: req.params.travelSlug
