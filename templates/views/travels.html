@@ -1,25 +1,25 @@
 {% extends "layouts/default.html" %} {% block intro %}
-<div class="container">
-	<div class="container continents">
-		<a href="/travels" class="active list-group-item">All Destinations</a>
-		{% for destination in destinations %}
-			<a href="/travels/{{destination.key}}" class="false list-group-item">{{destination.name}}</a>
-		{% endfor %}
-	</div>
-	<div class="travel-grid">
-		{% for travel in travelsArr %}
-			<div class="travel-item half">
-				<div class="picture">
-					<img src="{{ travel.image.secure_url }}" />
-				</div>
-				<div class=" half">
-					<a href="/travels/destination/{{travel.slug}}" class="description">
-						<h2>{{ travel.title }}</h2>
-						{{ travel.content.brief | safe }}
-					</a>
-				</div>
-			</div>
-		{% endfor %}
-	</div>
+
+<div class="container continents">
+	<a href="/travels">World</a>
+	{% for destination in destinations %}
+	<a href="/travels/{{ destination.key }}">{{ destination.name }}</a>
+	{% endfor %}
 </div>
-{% endblock %} 
+<div class="travel-grid">
+	{% for travel in travelsArr %}
+	<div class="travel-item half">
+		<div class="picture">
+			<img src="{{ travel.image.secure_url }}" />
+		</div>
+		<div class="half">
+			<a href="/travels/destination/{{ travel.slug }}" class="description">
+				<h2>{{ travel.title }}</h2>
+				{{ travel.content.brief | safe }}
+			</a>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
+{% endblock %}
