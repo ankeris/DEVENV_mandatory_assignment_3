@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "keystone": "4.0.0-beta.5",
+    "keystone": "4.2.1",
     "lodash": "^4.13.1",
     "consolidate": "0.14.5",
     "nunjucks": "3.0.0",
